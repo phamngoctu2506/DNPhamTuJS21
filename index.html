@@ -27,7 +27,6 @@
 </head>
 
 <body>
-
 	<div class="wrapper">
 		<!-- Sidebar Holder -->
 		<nav id="sidebar">
@@ -72,26 +71,22 @@
 					</a>
 				</li>
 			</ul>
-
 			<ul class="list-unstyled CTAs">
 				<li><a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
 				</li>
 				<li><a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a></li>
 			</ul>
 		</nav>
-
 		<!-- Page Content Holder -->
 		<div id="content">
 			<nav class="navbar navbar-default">
 				<div class="container-fluid">
-
 					<div class="navbar-header">
 						<button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
 							<i class="glyphicon glyphicon-align-left"></i>
 							<span>Toggle Sidebar</span>
 						</button>
 					</div>
-
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right">
 							<li><a href="#">Page</a></li>
@@ -102,8 +97,6 @@
 					</div>
 				</div>
 			</nav>
-
-
 			<div class="container">
 				<div class="card text-center">
 					<!-- Header -->
@@ -124,7 +117,8 @@
 						<div class="row mb-3">
 							<div class="col">
 								<div class="input-group">
-									<input type="text" class="form-control" placeholder="Loại nhân viên" id="searchName">
+									<input type="text" class="form-control" placeholder="Loại nhân viên"
+										id="searchName">
 									<div class="input-group-prepend">
 										<span class="input-group-text" id="btnTimNV"><i class="fa fa-search"></i></span>
 									</div>
@@ -142,7 +136,7 @@
 									<th>Họ và tên</th>
 									<th>Email</th>
 									<th>Ngày làm</th>
-									<th>Chức vụ</th>									
+									<th>Chức vụ</th>
 									<th>Tổng lương</th>
 									<th>Xếp loại</th>
 									<th><em class="fa fa-cog"></em></th>
@@ -155,7 +149,7 @@
 					</div>
 
 					<!-- Footer -->
-					<div class="card-footer myCardFooter">
+					<div class="card-footer myCardFooter" id="hienThi">
 						<nav>
 							<ul class="pagination justify-content-center" id="ulPhanTrang">
 
@@ -246,7 +240,7 @@
 
 							<span class="sp-thongbao" id="tbNgay"></span>
 						</div>
-						
+
 						<div class="form-group">
 							<div class="input-group">
 								<div class="input-group-prepend">
@@ -263,10 +257,10 @@
 									<span class="input-group-text"><i class="fa fa-briefcase"></i></span>
 								</div>
 								<select class="form-control" id="chucvu">
-									<option>Chọn chức vụ</option>
-									<option>Sếp</option>
-									<option>Trưởng phòng</option>
-									<option>Nhân viên</option>
+									<option value="0">Chọn chức vụ</option>
+									<option value="3">Sếp</option>
+									<option value="2">Trưởng phòng</option>
+									<option value="1">Nhân viên</option>
 								</select>
 							</div>
 
@@ -275,7 +269,8 @@
 						<div class="form-group">
 							<div class="input-group">
 								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+									<span class="input-group-text"><i class="fa fa-clock-o"
+											aria-hidden="true"></i></span>
 								</div>
 								<input type="text" name="gioLam" id="gioLam" class="form-control input-sm"
 									placeholder="Giờ làm">
@@ -288,7 +283,8 @@
 
 				<!-- Modal footer -->
 				<div class="modal-footer" id="modal-footer">
-					<button id="btnThemNV" type="button" class="btn btn-success">Thêm người dùng</button>
+					<button onclick="themNhanVien()" id="btnThemNV" type="button" class="btn btn-success">Thêm người
+						dùng</button>
 					<button id="btnCapNhat" type="button" class="btn btn-success">Cập nhật</button>
 					<button id="btnDong" type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
 				</div>
@@ -324,7 +320,9 @@
 			});
 		});
 	</script>
-    <script src="./js/main.js"></script>
+	<script src="./js/DanhSachNV.js"></script>
+	<script src="./js/NhanVien.js"></script>
+	<script src="./js/main.js"></script>
 </body>
 
 </html>
