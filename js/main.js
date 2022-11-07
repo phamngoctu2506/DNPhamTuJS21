@@ -4,6 +4,7 @@
 
 // tạo thể hiện DanhSachNV là toàn cục
 var dsnv = new DanhSachNhanVien();
+const validation = new Validation();
 
 // Hàm rút gọn
 function getELE(id) {
@@ -34,13 +35,27 @@ function themNhanVien() {
     var chucVu = getELE('chucvu').value;
     var gioLam = getELE('gioLam').value;
 
-    var nv = new NhanVien(taiKhoan, tenNV, email, password, ngayLam, Number(luongCB), chucVu, Number(gioLam));
-    nv.tinhLuongTB();
-    nv.xepLoai();
-    dsnv.themNV(nv);
+    taiKhoan = taiKhoan.replace(/\s/g, "");
 
-    hienThi(dsnv.mangNV);
-    setLocalStorage();
+    var isValid = true;
+    isValid &= validation.checkEmpty(taiKhoan, "tài khoản không được để trống", "tbTKNV") && validation.checkTK(taiKhoan, "tài khoản phải từ 4-6 ký số", "tbTKNV") && validation.checkTKNV(taiKhoan, "tài khoản không được trùng", "tbTKNV", dsnv.mangNV);
+    isValid &= validation.checkEmpty(tenNV, "Tên Sinh viên không được để trống", "tbTen") && validation.checkName(tenNV, "Tên Sinh viên không đúng định dạng", "tbTen");
+    isValid &= validation.checkEmail(email, "email không đúng định dạng", "tbEmail");
+    isValid &= validation.checkPass(password, "Pass phải có kí tự đặc biệt, số, 1 chữ in hoa, và từ 6-10 kí tự", "tbMatKhau");
+    isValid &= validation.checkEmpty(ngayLam, "Ngày làm không được để trống", "tbNgay");
+    isValid &= validation.checkLuong(luongCB, "nhập đúng mức lương", "tbLuongCB");
+    isValid &= validation.checkDropdown("chucvu", "Chưa chọn chức vụ", "tbChucVu");
+    isValid &= validation.checkEmpty(gioLam, "giờ làm không được để trống", "tbGiolam") && validation.checkGioLam(gioLam, "giờ làm 80 - 200 giờ", "tbGiolam");
+
+
+    if (isValid) {
+        var nv = new NhanVien(taiKhoan, tenNV, email, password, ngayLam, Number(luongCB), chucVu, Number(gioLam));
+        nv.tinhLuongTB();
+        nv.xepLoai();
+        dsnv.themNV(nv);
+        hienThi(dsnv.mangNV);
+        setLocalStorage();
+    }
 }
 
 function hienThi(mang) {
@@ -87,7 +102,7 @@ function xemChiTiet(taiKhoanXem) {
 }
 
 
-function capNhat(){
+function capNhat() {
     var taiKhoan = getELE('tknv').value;
     var tenNV = getELE('name').value;
     var email = getELE('email').value;
@@ -96,13 +111,32 @@ function capNhat(){
     var luongCB = getELE('luongCB').value;
     var chucVu = getELE('chucvu').value;
     var gioLam = getELE('gioLam').value;
-    
-    var nvCapNhat = new NhanVien(taiKhoan, tenNV, email, password, ngayLam, Number(luongCB), chucVu, Number(gioLam));
-    nvCapNhat.tinhLuongTB();
-    nvCapNhat.xepLoai();
-    console.log(nvCapNhat);
-    dsnv.capNhatNV(nvCapNhat);
-    setLocalStorage();
-    getLocalStorage();
-    hienThi(dsnv.mangNV);
+
+    taiKhoan = taiKhoan.replace(/\s/g, "");
+
+    var isValid = true;
+    isValid &= validation.checkEmpty(taiKhoan, "tài khoản không được để trống", "tbTKNV") && validation.checkTK(taiKhoan, "tài khoản phải từ 4-6 ký số", "tbTKNV") && validation.checkTKNV(taiKhoan, "tài khoản không được trùng", "tbTKNV", dsnv.mangNV);
+    isValid &= validation.checkEmpty(tenNV, "Tên Sinh viên không được để trống", "tbTen") && validation.checkName(tenNV, "Tên Sinh viên không đúng định dạng", "tbTen");
+    isValid &= validation.checkEmail(email, "email không đúng định dạng", "tbEmail");
+    isValid &= validation.checkPass(password, "Pass phải có kí tự đặc biệt, số, 1 chữ in hoa, và từ 6-10 kí tự", "tbMatKhau");
+    isValid &= validation.checkEmpty(ngayLam, "Ngày làm không được để trống", "tbNgay");
+    isValid &= validation.checkLuong(luongCB, "nhập đúng mức lương", "tbLuongCB");
+    isValid &= validation.checkDropdown("chucvu", "Chưa chọn chức vụ", "tbChucVu");
+    isValid &= validation.checkEmpty(gioLam, "giờ làm không được để trống", "tbGiolam") && validation.checkGioLam(gioLam, "giờ làm 80 - 200 giờ", "tbGiolam");
+    if (isValid) {
+        var nvCapNhat = new NhanVien(taiKhoan, tenNV, email, password, ngayLam, Number(luongCB), chucVu, Number(gioLam));
+        nvCapNhat.tinhLuongTB();
+        nvCapNhat.xepLoai();
+
+        dsnv.capNhatNV(nvCapNhat);
+        setLocalStorage();
+        getLocalStorage();
+        hienThi(dsnv.mangNV);
+    }
+
+}
+
+function resetForm() {
+    getELE('formNhanVien').reset();
+    getELE('tknv').disabled = false;
 }
