@@ -88,7 +88,7 @@ function xoaNhanVien(taiKhoanXoa) {
 function xemChiTiet(taiKhoanXem) {
     var viTri = dsnv.timViTri(taiKhoanXem);
     if (viTri > -1) {
-        // console.log(dsnv.mangNV[viTri]);
+
         getELE('tknv').value = dsnv.mangNV[viTri].taiKhoan;
         getELE('tknv').disabled = true;
         getELE('name').value = dsnv.mangNV[viTri].tenNV;
@@ -115,7 +115,6 @@ function capNhat() {
     taiKhoan = taiKhoan.replace(/\s/g, "");
 
     var isValid = true;
-    isValid &= validation.checkEmpty(taiKhoan, "tài khoản không được để trống", "tbTKNV") && validation.checkTK(taiKhoan, "tài khoản phải từ 4-6 ký số", "tbTKNV") && validation.checkTKNV(taiKhoan, "tài khoản không được trùng", "tbTKNV", dsnv.mangNV);
     isValid &= validation.checkEmpty(tenNV, "Tên Sinh viên không được để trống", "tbTen") && validation.checkName(tenNV, "Tên Sinh viên không đúng định dạng", "tbTen");
     isValid &= validation.checkEmail(email, "email không đúng định dạng", "tbEmail");
     isValid &= validation.checkPass(password, "Pass phải có kí tự đặc biệt, số, 1 chữ in hoa, và từ 6-10 kí tự", "tbMatKhau");
@@ -140,3 +139,11 @@ function resetForm() {
     getELE('formNhanVien').reset();
     getELE('tknv').disabled = false;
 }
+
+
+function timKiem() {
+    var tuKhoaXL = getELE('searchName').value;
+    var mangKQ = dsnv.timKiemNV(tuKhoaXL);
+    hienThi(mangKQ);
+}
+getELE('searchName').onkeyup = timKiem;

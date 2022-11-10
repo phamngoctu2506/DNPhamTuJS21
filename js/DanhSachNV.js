@@ -25,4 +25,19 @@ function DanhSachNhanVien() {
 
         }
     }
-}   
+}
+
+DanhSachNhanVien.prototype.timKiemNV = function (tuKhoaXL) {
+    var mangKetQua = [];
+    var tuKhoa = tuKhoaXL.toLowerCase().replace(/\s/g, "");
+    this.mangNV.map(function (nv) {
+        var loainv = nv.xepLoaiNV.toLowerCase().replace(/\s/g, "");// dòng này lỗi chưa đổi kiểu dữ liệu loainv sang chữ thường (toLowerCase)
+        // console.log(loainv);
+        var viTri = loainv.indexOf(tuKhoa);
+        // console.log(tuKhoa);
+        if (viTri > -1) {
+            mangKetQua.push(nv);
+        }
+    })
+    return mangKetQua;
+}

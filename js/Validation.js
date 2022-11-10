@@ -78,7 +78,7 @@ function Validation() {
         return false;
     }
     this.checkTK = function (valueInput, msgErr, spanID) {
-        var pattern = /^(?=.*\d).{4,6}$/;
+    var pattern = /[0-9a-zA-Z]{4,6}/
         if (valueInput.match(pattern)) {
             document.getElementById(spanID).innerHTML = "";
             return true;
